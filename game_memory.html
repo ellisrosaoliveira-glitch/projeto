@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>day_night</title>
+    <link rel="shortcut icon" href="/img/favicon.png" type="image/x-icon">
+</link rel= "stylesheet" 
+     href="https://fonts.googleapis.com/css2?
+ family=Material+Symbols+Rounded:opsz,wight,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap"/>
+
+<style>
+    :root {
+        --fundo-claro: #fff;
+        --fundo-escuro: #000;
+        --botao-primario: #7d1ad4;
+       --botao-primario-hover: #6e17b9;
+        --texto-claro: #000;
+        /*Adicionar esta variavel para o texto no tema claro
+        --texto-escuro: #fff;
+     } 
+
+    [data-theme="dark"]  {
+        --fundo-claro: #000;
+        --fundo-escutro: #fff;
+        --texto-claro:  #fff;
+        --texto-escuro: #000;
+    
+      } 
+
+      * {        
+
+         margin: 0;
+         padding: 0;
+     
+        }
+    
+    body {
+        background-color:  var(--fundo-claro);
+        color:  var(--texto-claro);
+        min-height:  100vh;
+        display: flex; 
+        justify-content: center;
+        align-items: center;
+    }
+
+        div{ 
+            background-color: var(--fundo-escuro);
+            color:var(--texto-escuro);
+            display: flex;
+            flex-direction:  column;
+            gap: 2rem;
+            align-items: center;
+            padding: 2rem;
+            border-radius: 0.9rem;
+
+        }
+           button {
+
+                background-color: var(--botao-primario);
+                color: var(--texto-escuro);
+                padding: 0.4rem;
+                border: none;
+                border-radius: 50%;
+                width: 80px;
+                height: 80px;
+                cursor: pointer;
+                display: flex;
+
+           align-items: center;
+           justify-content: center;
+        
+        } 
+          button:hover {  
+                background-color: var(--botao-primario-hover);
+                transition: 0.8s 
+         svg  {  
+
+            color: var(--texto-claro);
+            width: 34px;
+            height: 34px;
+           
+             }
+
+        .material-symbols-rounded {
+             font-variation-settings: 
+                  'FILL' 0,
+                  'wght' 400,
+                  'GRAD' 0,
+                  'opsz' 48;
+          font-size:  34;
+          color: var(--texto-claro);
+
+        }
+        
+        [data-theme "dark"] .material-symbols-rounded {
+            color: var(--texto-escuro);
+        }
+        </style>
+    </head> 
+
+    <body>
+        <div>
+            <h1> Dia de Deploy</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                Praesentium fugit est optio laborum similique maxime perspiciatis.
+                 Numquam debitis culpa ut vitae consequuntur quia,
+                  error aut maiores, quis enim blanditiis ex? </p>
+            <button id="btn-dark-mode"></button>
+        </div>
+    </body>
+    <script>
+        //'const' e usado para variaveis que nao serao retribuidas apos a inicializacao.
+        //'btnDarkMode' armazena a referencia ao elemento HTML do botao com o ID 'btn-dark-mode'.
+        const btnDarkMode= document.getElementById('btn-dark-mode');
+        
+        //'themeSystem' obtem o valor da chave 'themeSystem' do 'localStorage'.
+        //se nao exitir nenhum valor para essa chave, o valor padrao 'light' e atribuido.
+        const themeSystem= localStorage.getItem('themeSystem') ||'light';
+
+        //Adiciona um 'event listener' ao botao para o evento de 'click'.
+        //Quando o botao e clicado, a funçao dentro das chaves '{}' sera executada.
+        btnDarkMode.addEventListener('click',() => {
+        //Obtem o tema atual do 'localStorage' (ou usa 'light como padrao').
+        let oldTheme=localStoragegetItem('themeSystem') || 'light';
+
+        //Determina o novo tema. Se o tema antigo for 'light', o novo sera 'dark', e vice-versa.
+        let newTheme =  oldTheme === "light" ? "dark" : "light";
+        
+        //Salva o novo tema no 'localStorage' com a chave 'themeSystem'.
+        localStorage.setItem('themeSystem', newTheme) ;
+
+        // Chama a funçao 'defineCurrentTheme' para aplicar o novo tema visualmente.
+         defineCurrentTheme(newTheme) ;
+
+    });
+     
+    //Funçao que recebe um 'theme' como argumento e aplica esse tema a pagina.
+    function  defineCurrentTheme(theme) {  
+        //Define os nomes dos icones do Google Material Symbols Rouded para cada tema.
+
+        //Icone de sol para modo escuro
+        const darkIcon = '<span class="material-Symbols-rouded">light_mode</span';
+
+        //Icone de lua para o modo claro
+        const lightIcon = '<span class="material-Symbols-rouded">light_mode</span';
+        
+       //Define o atributo 'data-theme' no elemento 'html' com o valor do tema atual.
+       //Isso permite que as regras CSS com '[data-theme="..."]' sejam aplicadas.
+       document.documentElement.setAttribute("data-theme",theme);
+
+       //Verifica se o tema atual é 'light'.
+       if (theme ==="light") { 
+         // Se for 'light', define o conteudo inverno do botao com o icone de sol.
+         btnDarkMode.innerHTML = darkIcon;
+        return;//Sai da funçao após definir o icone.
+
+       }
+       
+       // Se o tema nao for 'light' (implica que é 'dark' neste caso),
+       //define o conteudo interno do botao com o icone de lua.
+       btnDarkMode.innerHTML = lightIcon;
+
+       }
+      
+       //Chama a funçao 'defineCurrentTheme' inicialmente com o tema obtido do 'localStorage'
+       //(ou 'light' se nenhum tema estiver salvo). Isso garenteque o tema correto seja aplicado
+       //quando a pagina carrega.
+       defineCurrentTheme(themeSystem);
+       </script>
+
+       </html>
+    
+
+
+
+
+
